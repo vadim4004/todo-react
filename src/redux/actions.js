@@ -10,7 +10,15 @@ export const deleteTodo = (todoId) => ({
   payload: todoId,
 });
 
-export const updateTodo = (todo) => ({
+export const updateTodo1 = (id, name) => ({
   type: types.UPDATE_TODO,
-  payload: todo,
+  payload: { id, name },
 });
+
+export const updateTodo = (todo) => (dispatch, getState) => {
+  let newTodo = getState().todos.filter((td) => td.id !== todo.id);
+  newTodo.push(todo);
+  newTodo.sort((a, b) => a.id - b.id);
+
+  dispatch({ type: types.UPDATE_TODO, payload: newTodo });
+};
