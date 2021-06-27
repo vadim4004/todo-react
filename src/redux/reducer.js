@@ -6,7 +6,6 @@ let initialState = {
     { id: 2, name: 'Two' },
     { id: 3, name: 'Three' },
   ],
-  text: '',
 };
 
 export function reducer(state = initialState, action) {
@@ -21,8 +20,8 @@ export function reducer(state = initialState, action) {
     case types.ADD_TODO:
       return { ...state, todos: [...state.todos, payload] };
     case types.UPDATE_TODO:
-      console.log('update');
-      return { ...state, todos: ([...state.todos].name = payload) };
+      return { ...state, todos: payload };
+
     default:
       return state;
   }

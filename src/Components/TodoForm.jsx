@@ -12,7 +12,7 @@ import {
 import AddIcon from '@material-ui/icons/Add';
 import '../App.css';
 
-export const TodoForm = ({ addTask }) => {
+export const TodoForm = () => {
   const [userValue, setUserValue] = useState('');
   let dispatch = useDispatch();
 
@@ -22,7 +22,6 @@ export const TodoForm = ({ addTask }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // addTask(userValue);
 
     dispatch(
       addTodo({
@@ -45,7 +44,7 @@ export const TodoForm = ({ addTask }) => {
             label="Name"
             value={userValue}
             onChange={onHandleChange}
-            // required="true"
+            required={true}
             className="form-input"
           />
           <Button

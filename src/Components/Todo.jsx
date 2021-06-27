@@ -4,45 +4,53 @@ import { deleteTodo, updateTodo } from '../redux/actions';
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import DoneIcon from '@material-ui/icons/Done';
 import '../App.css';
-import { TextField } from '@material-ui/core';
 
-export const Todo = ({ todo, completeTask, removeTask }) => {
+export const Todo = ({ todo }) => {
   let dispatch = useDispatch();
   const [editable, setEditable] = useState(false);
   const [name, setName] = useState(todo.name);
 
   let onClickEdit = () => {
-    dispatch(updateTodo({ name: name }));
     if (editable) {
       setName(todo.name);
     }
     setEditable(!editable);
   };
 
+  const onBlurEdit = () => {
+    const newObj = {
+      id: todo.id,
+      name: name,
+    };
+    dispatch(updateTodo(newObj));
+  };
+
   let onChangeEdit = (e) => setName(e.target.value);
 
   return (
     <div className="todo-item">
-      <div
-        className={todo.isDone ? 'item-text strike-out' : 'item-text'}
-        // onClick={() => completeTask(todo.id)}
-      >
+      <div className="item-text">
         {editable ? (
-          // <TextField id="outlined-basic" label="Edit" variant="outlined" />
           <input
             type="text"
             autoFocus={true}
-            className=""
+            className="form-input-edit"
             value={name}
             onChange={onChangeEdit}
+            onBlur={(e) => onBlurEdit()}
           />
         ) : (
           todo.name
         )}
       </div>
       <div>
-        <EditIcon onClick={onClickEdit} />
+        {editable ? (
+          <DoneIcon onClick={onClickEdit} />
+        ) : (
+          <EditIcon onClick={onClickEdit} />
+        )}
       </div>
       <div
         className="delete-item"

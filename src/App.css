@@ -4,9 +4,6 @@
 .button-add {
   cursor: pointer;
   height: 56px;
-
-  /*position: absolute;*/
-  /*right: 64px;*/
 }
 
 .todo-list {
@@ -47,4 +44,10 @@
 
 .form-items .form-input {
   width: 236px;
+}
+
+.form-input-edit {
+  border: none;
+  font-size: 16px;
+  text-align: center;
 }
